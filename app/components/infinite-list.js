@@ -7,10 +7,17 @@ export default Ember.Component.extend({
     items: [],
 
     startItem: 0,
+    bufferSize: 100,
 
     visibleItems: function() {
-        return this.get('items').slice(this.get('startItem'), this.get('startItem') + 40);
-    }.property('startItem', 'items.[]'),
+        var start = this.get('realStart');
+        var end   = start + this.get('showItems') + 2 * this.get('bufferSize');
+        return this.get('items').slice(start, end);
+    }.property('realStart', 'items.[]', 'bufferSize'),
+
+    realStart: function() {
+        return Math.max(0, this.get('startItem') - this.get('bufferSize'));
+    }.property('startItem', 'showItems'),
 
     showItems: 20,
     itemHeight: 20,
@@ -20,8 +27,8 @@ export default Ember.Component.extend({
     }.property('showItems', 'itemHeight'),
 
     topPadding: function() {
-        return this.get('controller.startItem') * this.get('itemHeight');
-    }.property('controller.startItem', 'itemHeight'),
+        return this.get('realStart') * this.get('itemHeight');
+    }.property('realStart', 'itemHeight'),
 
     paddingStyle: Em.computed('topPadding', function () {
         return `height: ${this.get('topPadding')}px`.htmlSafe();
@@ -30,7 +37,7 @@ export default Ember.Component.extend({
     onScroll() {
         var scrollTop = this.$().scrollTop();
         var startItem = Math.floor(scrollTop / this.get('showItems'));
-        this.set('controller.startItem', startItem);
+        this.set('startItem', startItem);
     },
 
     contentHeight: function() {
