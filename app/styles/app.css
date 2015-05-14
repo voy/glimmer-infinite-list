@@ -1,6 +1,5 @@
 .infinite-list {
     width: 150px;
-    height: 400px;
     border: 1px solid black;
     overflow-y: scroll;
 }

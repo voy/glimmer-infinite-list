@@ -6,6 +6,10 @@ export default Ember.View.extend({
     showItems: 20,
     itemHeight: 20,
 
+    visibleHeight: function() {
+        return this.get('showItems') * this.get('itemHeight');
+    }.property('showItems', 'itemHeight'),
+
     topPadding: function() {
         return this.get('controller.startItem') * this.get('itemHeight');
     }.property('controller.startItem', 'itemHeight'),
