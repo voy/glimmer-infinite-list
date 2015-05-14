@@ -1,8 +1,6 @@
-<div style="height: {{view.visibleHeight}}px">
-    <div style="height: {{view.contentHeight}}px">
-        <div style="height: {{view.topPadding}}px"></div>
-        {{#each visibleItems key="key" as |item|}}
-            {{render "infinite-list-item" item}}
-        {{/each}}
-    </div>
+<div style={{view.containerStyle}}>
+    <div style={{view.paddingStyle}}></div>
+    {{#each visibleItems key="key" as |item|}}
+        {{render "infinite-list-item" item}}
+    {{/each}}
 </div>
