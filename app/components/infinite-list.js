@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     items: [],
 
     startItem: 0,
-    bufferSize: 100,
+    bufferSize: 20,
 
     visibleItems: function() {
         var start = this.get('realStart');
@@ -30,9 +30,9 @@ export default Ember.Component.extend({
         return this.get('realStart') * this.get('itemHeight');
     }.property('realStart', 'itemHeight'),
 
-    paddingStyle: Em.computed('topPadding', function () {
+    paddingStyle: function() {
         return `height: ${this.get('topPadding')}px`.htmlSafe();
-    }),
+    }.property('topPadding'),
 
     onScroll() {
         var scrollTop = this.$().scrollTop();
@@ -44,9 +44,9 @@ export default Ember.Component.extend({
         return this.get('items.length') * this.get('itemHeight');
     }.property('items.length', 'itemHeight'),
 
-    containerStyle: Em.computed('contentHeight', function () {
+    containerStyle: function() {
         return `height: ${this.get('contentHeight')}px`.htmlSafe();
-    }),
+    }.property('contentHeight'),
 
     bindScroll: function() {
         this.$().on('scroll', Em.run.bind(this, 'onScroll'));

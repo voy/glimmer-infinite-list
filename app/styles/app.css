@@ -3,3 +3,13 @@
     border: 1px solid black;
     overflow-y: scroll;
 }
+
+.type-foo::before {
+    content: 'foo';
+    color: pink;
+}
+
+.type-bar::before {
+    content: 'bar';
+    color: lightgreen;
+}
