@@ -1,0 +1,8 @@
+<div style="height: 400px">
+    <div style={{view.containerStyle}}>
+        <div style={{view.paddingStyle}}></div>
+        {{#each visibleItems key="key" as |item|}}
+            {{infinite-list-item item=item}}
+        {{/each}}
+    </div>
+</div>

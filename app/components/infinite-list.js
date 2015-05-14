@@ -1,7 +1,16 @@
 import Ember from 'ember';
 
-export default Ember.View.extend({
+export default Ember.Component.extend({
     classNames: ['infinite-list'],
+
+    // public api
+    items: [],
+
+    startItem: 0,
+
+    visibleItems: function() {
+        return this.get('items').slice(this.get('startItem'), this.get('startItem') + 40);
+    }.property('startItem', 'items.[]'),
 
     showItems: 20,
     itemHeight: 20,
@@ -25,8 +34,8 @@ export default Ember.View.extend({
     },
 
     contentHeight: function() {
-        return this.get('controller.model.length') * this.get('itemHeight');
-    }.property('model.length', 'itemHeight'),
+        return this.get('items.length') * this.get('itemHeight');
+    }.property('items.length', 'itemHeight'),
 
     containerStyle: Em.computed('contentHeight', function () {
         return `height: ${this.get('contentHeight')}px`.htmlSafe();
