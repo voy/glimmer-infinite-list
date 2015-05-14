@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-    itemHeight: Em.computed.oneWay('parentView.itemHeight')
+    itemStyle: Em.computed('parentView.itemHeight', function() {
+      return `height: ${this.get('parentView.itemHeight')}px`.htmlSafe();
+    })
 });
