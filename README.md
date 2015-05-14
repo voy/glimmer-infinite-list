@@ -1,7 +1,9 @@
 # Glimmer-listview
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is an attempt to render very large scrollable list of items similar to
+(react infinite list)[https://github.com/jankopriva/react-infinite-list]. While
+the react.js solution seems pretty fast, there is visible jank with ember canary 
+(with the new glimmer rendering engine).
 
 ## Prerequisites
 
